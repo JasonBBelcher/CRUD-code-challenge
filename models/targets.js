@@ -1,29 +1,48 @@
 const mongoose = require('mongoose');
 
-const targetSchema = new mongoose.Schema({
-  targetName: {
-    type: String
+var schemaOptions = {
+  toObject: {
+    virtuals: true
   },
-  keyContacts: {
-    type: [{ name: String, phone: Number, title: String }]
-  },
-  companyInformation: {
-    type: String
-  },
-  kpi: {
-    type: { startYearValue: Number, endYearValue: Number }
-  },
-
-  status: {
-    type: String,
-    default: 'RESEARCHING',
-    enum: ['PENDING-APPROVAL', 'APPROVED', 'DECLINED', 'RESEARCHING']
+  toJSON: {
+    virtuals: true
   }
-});
+};
+
+const targetSchema = new mongoose.Schema(
+  {
+    targetName: {
+      type: String,
+      required: true
+    },
+    keyContacts: {
+      type: [{ name: String, phone: Number, title: String }],
+      required: true
+    },
+    companyInformation: {
+      type: String,
+      default: 'No information provided.'
+    },
+    kpiData: {
+      type: { startYearValue: Number, endYearValue: Number },
+      required: true
+    },
+
+    status: {
+      type: String,
+      default: 'RESEARCHING',
+      enum: ['PENDING-APPROVAL', 'APPROVED', 'DECLINED', 'RESEARCHING']
+    }
+  },
+  schemaOptions
+);
+
 targetSchema.virtual('agr').get(function() {
   return (
-    ((this.kpi.startYearValue - this.endYearValue) / this.kpi.startYearValue) *
-    100
+    (this.agr =
+      ((this.kpiData.endYearValue - this.kpiData.startYearValue) /
+        this.kpiData.startYearValue) *
+      100).toFixed(2) + '%'
   );
 });
 
