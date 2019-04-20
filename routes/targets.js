@@ -17,8 +17,13 @@ router.post('/', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
   Targets.find()
-    .then(targets => res.status(200).json(targets))
+    .then(targets => res.status(200).json({ targets }))
     .catch(error => next({ status: 400, message: error.message }));
+});
+
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Targets.findById(id).then(target => res.status(200).json({ target }));
 });
 
 module.exports = router;
