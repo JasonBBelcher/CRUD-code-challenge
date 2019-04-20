@@ -23,7 +23,18 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  Targets.findById(id).then(target => res.status(200).json({ target }));
+  Targets.findById(id)
+    .then(target => res.status(200).json({ target }))
+    .catch(error => next({ status: 400, message: error.message }));
+});
+
+router.patch('/:id', (req, res, next) => {
+  const targetBody = req.body;
+  const id = req.params.id;
+  Targets.findByIdAndUpdate(id, targetBody, { new: true })
+    .exec()
+    .then(editedTarget => res.status(201).json({ editedTarget }))
+    .catch(error => next({ status: 400, message: error.message }));
 });
 
 module.exports = router;
