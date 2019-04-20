@@ -3,7 +3,13 @@
   <h1>{{ title }}</h1>
   <!-- Test page to see if api is communicating with front end.  -->
   <h2>Companies</h2>
-  <ul *ngFor="let target of (targets$ | async); let index = index">
+  <ul
+    *ngFor="
+      let target of (targets$
+        | async
+        | paginate: { itemsPerPage: 2, currentPage: page })
+    "
+  >
     <li>
       <h3>{{ target.targetName }}</h3>
     </li>
@@ -37,5 +43,9 @@
     </ul>
   </ul>
 
-  <!-- <router-outlet></router-outlet> -->
+  <div class="has-text-centered">
+    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+  </div>
+
+  <!-- <router-outlet></router-outlet> -->a
 </div>
