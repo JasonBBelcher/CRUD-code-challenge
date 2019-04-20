@@ -8,8 +8,15 @@ router.get('/', function(req, res, next) {
   return res.json('testing');
 });
 
-router.post('/', function(req, res) {
-  return res.json('testing post');
+router.post('/', function(req, res, next) {
+  const targetBody = req.body;
+  Targets.create(targetBody)
+    .then(target => {
+      return res.status(201).json(target);
+    })
+    .catch(error => {
+      return next(error);
+    });
 });
 
 module.exports = router;
