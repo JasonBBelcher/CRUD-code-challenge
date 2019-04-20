@@ -4,19 +4,21 @@ require('../models/db');
 const mongoose = require('mongoose');
 const Targets = require('../models/targets');
 
-router.get('/', function(req, res, next) {
-  return res.json('testing');
-});
-
-router.post('/', function(req, res, next) {
+router.post('/', (req, res, next) => {
   const targetBody = req.body;
   Targets.create(targetBody)
     .then(target => {
       return res.status(201).json(target);
     })
     .catch(error => {
-      return next(error);
+      return next({ status: 400, message: error.message });
     });
+});
+
+router.get('/', (req, res, next) => {
+  Targets.find()
+    .then(targets => res.status(200).json(targets))
+    .catch(error => next({ status: 400, message: error.message }));
 });
 
 module.exports = router;
