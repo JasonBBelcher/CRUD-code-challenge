@@ -42,3 +42,34 @@ exports.deleteTargetById = (req, res, next) => {
     .then(result => res.status(200).json(result))
     .catch(error => next({ status: 400, message: error.message }));
 };
+
+exports.getAllContacts = (req, res, next) => {
+  Targets.find({})
+
+    .then(results => {
+      results = results.map(record => {
+        return {
+          keyContacts: record.keyContacts,
+          targetName: record.targetName
+        };
+      });
+      res.status(200).json(results);
+    })
+    .catch(error => next({ status: 400, message: error.message }));
+};
+
+exports.getAllFinancials = (req, res, next) => {
+  Targets.find({})
+    .then(results => {
+      results = results.map(record => {
+        return {
+          targetName: record.targetName,
+          agr: record.agr,
+          beginningYearlyRevenue: record.kpiData.startYearValue,
+          endingYearlyRevenue: record.kpiData.endYearValue
+        };
+      });
+      res.status(200).json(results);
+    })
+    .catch(error => next({ status: 400, message: error.message }));
+};
