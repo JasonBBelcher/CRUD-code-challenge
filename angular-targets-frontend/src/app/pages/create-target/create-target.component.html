@@ -1,3 +1,74 @@
-<p>
-  Create a form to enter a new target here.
-</p>
+<form name="form" [formGroup]="form" novalidate>
+  <div class="form-group">
+    <label for="targetName">Target Acquisition Name</label>
+    <input
+      type="text"
+      class="form-control"
+      name="targetName"
+      formControlName="targetName"
+      required
+    />
+  </div>
+  <div>
+    <div class="form-group">
+      <div>
+        <button class="btn btn-primary" (click)="addKeyContactClick()">
+          Add Contact
+        </button>
+      </div>
+    </div>
+    <div
+      formArrayName="keyContacts"
+      *ngFor="let keyContact of form.get('keyContacts').controls; let i = index"
+    >
+      <h4>Key Contact {{ i + 1 }}</h4>
+      <div [formGroupName]="i">
+        <label for="name">Key Contact Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          formControlName="name"
+          required
+        />
+        <label for="phone">Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          name="phone"
+          formControlName="phone"
+          required
+        />
+        <label for="title">Position or Title</label>
+        <input
+          type="text"
+          class="form-control"
+          name="title"
+          formControlName="title"
+          required
+        />
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="status">Status</label>
+    <select required name="status" formControlName="status">
+      <option value="RESEARCHING">Researching </option>
+      <option value="PENDING-APPROVAL">Pending approval</option>
+      <option value="APPROVED">Approved</option>
+      <option value="DECLINED">Declined</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Company Notes & Info</label>
+    <textarea
+      class="form-control"
+      name="companyInformation"
+      formControlName="companyInformation"
+      required
+    ></textarea>
+  </div>
+  <button class="btn btn-default" (click)="save()">Save</button>
+  <button class="btn btn-danger" (click)="resetForm()">Reset Form</button>
+</form>
