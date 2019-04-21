@@ -1,0 +1,22 @@
+<accordion>
+  <accordion-group
+    *ngFor="
+      let target of (targets$
+        | async
+        | paginate: { itemsPerPage: 2, currentPage: page })
+    "
+    heading="{{ target.targetName }}"
+  >
+    <ul class="list-group">
+      <li class="list-group-item">Status: {{ target.status }}</li>
+      <li class="list-group-item">Annual Growth Rate: {{ target.agr }}</li>
+      <li class="list-group-item">
+        Company Info: {{ target.companyInformation }}
+      </li>
+    </ul>
+  </accordion-group>
+</accordion>
+
+<div class="has-text-centered">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>

@@ -47,13 +47,24 @@ exports.getAllContacts = (req, res, next) => {
   Targets.find({})
 
     .then(results => {
-      results = results.map(record => {
-        return {
-          keyContacts: record.keyContacts,
-          targetName: record.targetName
-        };
+      let contacts = [];
+      results.forEach((result, i) => {
+        result.keyContacts.forEach(contact => {
+          modifiedContact = Object.assign(
+            {},
+            { name: contact.name },
+            { phone: contact.phone },
+            { title: contact.title },
+            { id: contact._id },
+            {
+              company: result.targetName
+            }
+          );
+
+          contacts.push(modifiedContact);
+        });
       });
-      res.status(200).json(results);
+      res.status(200).json(contacts);
     })
     .catch(error => next({ status: 400, message: error.message }));
 };

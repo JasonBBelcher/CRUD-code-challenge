@@ -1,53 +1,29 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div>
-  <h1>{{ title }}</h1>
-  <!-- Test page to see if api is communicating with front end.  -->
-  <h2>Companies</h2>
-  <ul
-    *ngFor="
-      let target of (targets$
-        | async
-        | paginate: { itemsPerPage: 2, currentPage: page })
-    "
-  >
-    <li>
-      <h3>{{ target.targetName }}</h3>
-    </li>
-    <li>
-      Status: <b>{{ target.status }}</b>
-    </li>
-    <li>
-      Annual Growth Rate: <b>{{ target.agr }}</b>
-    </li>
-    <li>
-      Year Starting Revenue: <b>{{ target.kpiData.startYearValue }}</b>
-    </li>
-    <li>
-      Year Ending Revenue: <b>{{ target.kpiData.endYearValue }}</b>
-    </li>
-    <li>
-      <h4>Company Info</h4>
-      <p>{{ target.companyInformation }}</p>
-    </li>
-    <h4>{{ target.targetName }} Contacts</h4>
-    <ul *ngFor="let keyContact of target.keyContacts">
-      <li>
-        Name: <b>{{ keyContact.name }}</b>
-      </li>
-      <li>
-        Phone: <b> {{ keyContact.phone }}</b>
-      </li>
-      <li>
-        Position: <b>{{ keyContact.title }}</b>
-      </li>
-    </ul>
-  </ul>
+<h1>{{ title }}</h1>
 
-  <div class="has-text-centered">
-    <pagination-controls (pageChange)="page = $event"></pagination-controls>
-  </div>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a
+      class="nav-link active"
+      routerLink="create/target"
+      routerLinkActive="active"
+      >Create Target</a
+    >
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="view/targets" routerLinkActive="active"
+      >View Targets</a
+    >
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="view/financials" routerLinkActive="active"
+      >View Financials</a
+    >
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="view/contacts" routerLinkActive="active"
+      >View Key Contacts</a
+    >
+  </li>
+</ul>
 
-  <button (click)="testCreateBtn()">test</button>
-
-  <!-- <router-outlet></router-outlet> -->
-</div>
+<router-outlet></router-outlet>
