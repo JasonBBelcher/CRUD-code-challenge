@@ -7,6 +7,10 @@ router.post('/', handlers.postTarget);
 
 router.get('/', handlers.getAllTargets);
 
+router.get('/contacts', handlers.getAllContacts);
+
+router.get('/financials', handlers.getAllFinancials);
+
 router.get('/:id', handlers.getTargetById);
 
 router.patch('/:id', handlers.updateTargetById);
