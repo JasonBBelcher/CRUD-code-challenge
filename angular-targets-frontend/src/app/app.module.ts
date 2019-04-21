@@ -3,10 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,8 +17,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserModule,
     NgxPaginationModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
-    HttpClientModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ButtonsModule.forRoot(),
+    ModalModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
