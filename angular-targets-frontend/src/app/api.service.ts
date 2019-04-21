@@ -30,7 +30,7 @@ export class ApiService {
   }
   prefix = 'api/v1';
 
-  getTargets() {
+  getTargets(): void {
     this.http.get(`${this.prefix}/targets`).subscribe(data => {
       console.log(data);
       this.dataStore.targets = data;
@@ -38,7 +38,7 @@ export class ApiService {
     });
   }
 
-  getKeyContacts() {
+  getKeyContacts(): void {
     this.http.get(`${this.prefix}/targets/contacts`).subscribe(data => {
       console.log(data);
       this.dataStore.keyContacts = data;
@@ -46,12 +46,9 @@ export class ApiService {
     });
   }
 
-  createTarget(body) {
+  createTarget(body): Observable<any> {
     return this.http
       .post(`${this.prefix}/targets`, body)
-      .pipe(catchError(err => err))
-      .subscribe(() => {
-        this.getTargets();
-      });
+      .pipe(catchError(err => err));
   }
 }

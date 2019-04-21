@@ -16,6 +16,7 @@ import { ViewTargetsComponent } from './pages/view-targets/view-targets.componen
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ViewFinancialsComponent } from './pages/view-financials/view-financials.component';
 import { ViewContactsComponent } from './pages/view-contacts/view-contacts.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ViewContactsComponent } from './pages/view-contacts/view-contacts.compo
     ViewContactsComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     NgxPaginationModule,
     AppRoutingModule,

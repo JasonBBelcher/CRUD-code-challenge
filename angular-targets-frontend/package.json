@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -- --proxy-config proxy.conf.json",
+    "start": "ng serve -o --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -20,7 +20,9 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "bootstrap": "^4.0.0",
+    "chart.js": "^2.8.0",
     "core-js": "^2.5.4",
+    "ng2-charts": "^2.2.2",
     "ngx-bootstrap": "^4.0.1",
     "ngx-pagination": "^3.2.1",
     "rxjs": "~6.3.3",
