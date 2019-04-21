@@ -1,0 +1,21 @@
+<accordion>
+  <accordion-group
+    *ngFor="
+      let contact of (keyContacts$
+        | async
+        | paginate: { itemsPerPage: 4, currentPage: page })
+    "
+    heading="{{ contact.name }}"
+  >
+    <ul class="list-group">
+      <li class="list-group-item">Company: {{ contact.company }}</li>
+      <li class="list-group-item">Employee Name: {{ contact.name }}</li>
+      <li class="list-group-item">Position Held: {{ contact.title }}</li>
+      <li class="list-group-item">Contact #: {{ contact.phone }}</li>
+    </ul>
+  </accordion-group>
+</accordion>
+
+<div class="has-text-centered">
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+</div>
