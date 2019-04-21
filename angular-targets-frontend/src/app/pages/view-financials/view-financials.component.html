@@ -1,3 +1,12 @@
-<p>
-  view-financials works!
-</p>
+<div style="display: block;">
+  <canvas
+    baseChart
+    [datasets]="pieChartData"
+    [labels]="pieChartLabels"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [legend]="pieChartLegend"
+    [chartType]="chartType"
+  >
+  </canvas>
+</div>
