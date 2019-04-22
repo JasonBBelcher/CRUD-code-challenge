@@ -22,7 +22,7 @@ export class CreateTargetComponent implements OnInit {
       targetName: [''],
       keyContacts: this.fb.array([this.addKeyContactsFormGroup()]),
       companyInformation: [''],
-      kpiData: [{ startYearValue: 400, endYearValue: 500 }],
+      kpiData: this.fb.group({ startYearValue: [''], endYearValue: [''] }),
       status: ['RESEARCHING']
     });
   }
@@ -46,14 +46,18 @@ export class CreateTargetComponent implements OnInit {
   save() {
     const formData = this.form.value;
 
-    console.log(formData);
-
     this.apiService.createTarget(formData).subscribe(() => {
       this.router.navigateByUrl('/view/targets');
     });
   }
 
   resetForm() {
-    this.form.reset();
+    this.form = this.fb.group({
+      targetName: [''],
+      keyContacts: this.fb.array(['']),
+      companyInformation: [''],
+      kpiData: this.fb.group({ startYearValue: [''], endYearValue: [''] }),
+      status: ['RESEARCHING']
+    });
   }
 }
