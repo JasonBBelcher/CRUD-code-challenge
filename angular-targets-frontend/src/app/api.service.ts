@@ -38,6 +38,14 @@ export class ApiService {
     });
   }
 
+  getTarget(id): Observable<any> {
+    return this.http.get(`${this.prefix}/targets/${id}`);
+  }
+
+  updateTarget(id, body): Observable<any> {
+    return this.http.patch(`${this.prefix}/targets/${id}`, body);
+  }
+
   getKeyContacts(): void {
     this.http.get(`${this.prefix}/targets/contacts`).subscribe(data => {
       console.log(data);

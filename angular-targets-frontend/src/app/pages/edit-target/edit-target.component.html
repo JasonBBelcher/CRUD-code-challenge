@@ -17,37 +17,37 @@
         </button>
       </div>
     </div>
-    <div
-      formArrayName="keyContacts"
-      *ngFor="let keyContact of form.get('keyContacts').controls; let i = index"
-    >
-      <h4>Key Contact {{ i + 1 }}</h4>
-      <div class="form-group" [formGroupName]="i">
-        <label for="name">Key Contact Name</label>
-        <input
-          type="text"
-          class="form-control"
-          name="name"
-          formControlName="name"
-          required
-        />
-        <label for="phone">Phone Number</label>
-        <input
-          type="text"
-          class="form-control"
-          name="phone"
-          formControlName="phone"
-          required
-        />
-        <label for="title">Position or Title</label>
-        <input
-          type="text"
-          class="form-control"
-          name="title"
-          formControlName="title"
-          required
-        />
-      </div>
+  </div>
+  <div
+    formArrayName="keyContacts"
+    *ngFor="let keyContact of form.get('keyContacts').controls; let i = index"
+  >
+    <h4>Key Contact {{ i + 1 }}</h4>
+    <div class="form-group" [formGroupName]="i">
+      <label for="name">Key Contact Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        formControlName="name"
+        required
+      />
+      <label for="phone">Phone Number</label>
+      <input
+        type="text"
+        class="form-control"
+        name="phone"
+        formControlName="phone"
+        required
+      />
+      <label for="title">Position or Title</label>
+      <input
+        type="text"
+        class="form-control"
+        name="title"
+        formControlName="title"
+        required
+      />
     </div>
   </div>
 
