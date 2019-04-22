@@ -1,6 +1,6 @@
 <form name="form" [formGroup]="form" novalidate>
   <div class="form-group">
-    <label for="targetName">Target Acquisition Name</label>
+    <label for="targetName">Company Name</label>
     <input
       type="text"
       class="form-control"
@@ -89,6 +89,27 @@
       required
     ></textarea>
   </div>
-  <button class="btn btn-default" (click)="save()">Save</button>
+  <button class="btn btn-default" (click)="openModal(template)">Save</button>
   <button class="btn btn-danger" (click)="resetForm()">Reset Form</button>
 </form>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Save {{ form.value.targetName }} ?
+
+    <div>
+      <button class="btn btn-primary" (click)="save()">Confirm Save</button>
+    </div>
+  </div>
+</ng-template>

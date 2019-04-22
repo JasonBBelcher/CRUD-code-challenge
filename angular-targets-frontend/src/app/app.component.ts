@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +6,11 @@ import { Component, OnInit, OnChanges } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Targets for acquisition';
-
+  innerWidth: number;
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    console.log(event);
+    this.innerWidth = window.innerWidth;
+  }
   ngOnInit() {}
 }

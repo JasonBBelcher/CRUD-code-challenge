@@ -1,29 +1,43 @@
-<h1>{{ title }}</h1>
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Insiten Acquisition Tool</h1>
+      <p class="lead">
+        Informing your decisions
+      </p>
+    </div>
+  </div>
 
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a
-      class="nav-link active"
-      routerLink="create/target"
-      routerLinkActive="active"
-      >Create Target</a
-    >
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="view/targets" routerLinkActive="active"
-      >View/Edit Targets</a
-    >
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="view/financials" routerLinkActive="active"
-      >View Financials</a
-    >
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="view/contacts" routerLinkActive="active"
-      >View Key Contacts</a
-    >
-  </li>
-</ul>
+  <ul
+    [ngClass]="{
+      'nav nav-pills': innerWidth < 800,
+      'nav nav-tabs': innerWidth > 800
+    }"
+  >
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        routerLink="create/target"
+        routerLinkActive="active"
+        >Create Target</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="view/targets" routerLinkActive="active"
+        >View/Edit Targets</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="view/financials" routerLinkActive="active"
+        >View Financials</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="view/contacts" routerLinkActive="active"
+        >View Key Contacts</a
+      >
+    </li>
+  </ul>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

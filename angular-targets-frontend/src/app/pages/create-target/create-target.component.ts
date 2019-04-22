@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-create-target',
@@ -11,11 +12,13 @@ import { Router } from '@angular/router';
 })
 export class CreateTargetComponent implements OnInit {
   targets$: Observable<any[]>;
+  modalRef: BsModalRef;
   form: FormGroup;
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private modalService: BsModalService
   ) {
     // some test form data to get the POST right.
     this.form = this.fb.group({
@@ -35,7 +38,10 @@ export class CreateTargetComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.apiService.getTargets();
+    this.targets$ = this.apiService.targets;
+  }
 
   addKeyContactClick(): void {
     (this.form.get('keyContacts') as FormArray).push(
@@ -49,6 +55,7 @@ export class CreateTargetComponent implements OnInit {
     this.apiService.createTarget(formData);
     this.targets$ = this.apiService.targets;
     this.resetForm();
+    this.modalRef.hide();
   }
 
   resetForm() {
@@ -59,5 +66,9 @@ export class CreateTargetComponent implements OnInit {
       kpiData: this.fb.group({ startYearValue: [''], endYearValue: [''] }),
       status: ['RESEARCHING']
     });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 }
