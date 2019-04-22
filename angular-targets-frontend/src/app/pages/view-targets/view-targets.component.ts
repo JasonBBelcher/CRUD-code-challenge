@@ -18,8 +18,11 @@ export class ViewTargetsComponent implements OnInit {
     this.targets$ = this.apiService.targets;
   }
 
-  goToEdit(id) {
-    console.log(id);
+  goToEdit(id: any) {
     this.router.navigate(['/edit/target', id]);
+  }
+
+  delete(id: any) {
+    this.apiService.deleteTarget(id);
   }
 }

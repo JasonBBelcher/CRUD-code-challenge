@@ -38,7 +38,7 @@ exports.updateTargetById = (req, res, next) => {
 exports.deleteTargetById = (req, res, next) => {
   const id = req.params.id;
 
-  Targets.findOneAndDelete(id)
+  Targets.findByIdAndDelete(id)
     .then(result => res.status(200).json(result))
     .catch(error => next({ status: 400, message: error.message }));
 };

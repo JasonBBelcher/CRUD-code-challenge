@@ -46,15 +46,15 @@ export class CreateTargetComponent implements OnInit {
   save() {
     const formData = this.form.value;
 
-    this.apiService.createTarget(formData).subscribe(() => {
-      this.router.navigateByUrl('/view/targets');
-    });
+    this.apiService.createTarget(formData);
+    this.targets$ = this.apiService.targets;
+    this.resetForm();
   }
 
   resetForm() {
     this.form = this.fb.group({
       targetName: [''],
-      keyContacts: this.fb.array(['']),
+      keyContacts: this.fb.array([this.addKeyContactsFormGroup()]),
       companyInformation: [''],
       kpiData: this.fb.group({ startYearValue: [''], endYearValue: [''] }),
       status: ['RESEARCHING']
