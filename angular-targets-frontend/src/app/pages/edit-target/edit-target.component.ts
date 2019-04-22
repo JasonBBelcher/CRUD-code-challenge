@@ -23,7 +23,7 @@ export class EditTargetComponent implements OnInit {
     // some test form data to get the POST right.
     this.form = this.fb.group({
       targetName: [''],
-      keyContacts: this.fb.array([this.addKeyContactsFormGroup()]),
+      keyContacts: this.fb.array([]),
       companyInformation: [''],
       kpiData: this.fb.group({ startYearValue: [''], endYearValue: [''] }),
       status: ['RESEARCHING']
@@ -50,10 +50,29 @@ export class EditTargetComponent implements OnInit {
           kpiData,
           status
         });
+        // loop over single target records keyContacts and create a formgroup object for each one.
+        target.keyContacts.forEach(contact => {
+          (this.form.get('keyContacts') as FormArray).push(
+            this.createContactsFormGroup(
+              contact.name,
+              contact.phone,
+              contact.title
+            )
+          );
+        });
       });
     });
   }
+  // created a method to dynamically push a formGrp for each contact coming from backend
+  createContactsFormGroup(name: any, phone: any, title: any): FormGroup {
+    return this.fb.group({
+      name: [name],
+      phone: [phone],
+      title: [title]
+    });
+  }
 
+  // all an empty formgroup so that user can add a contact to the target record
   addKeyContactsFormGroup(): FormGroup {
     return this.fb.group({
       name: [''],
@@ -64,11 +83,9 @@ export class EditTargetComponent implements OnInit {
 
   save() {
     const formData = this.form.value;
-    console.log(formData);
-
-    this.apiService.updateTarget(this.id, formData).subscribe(() => {
-      this.router.navigateByUrl('/view/targets');
-    });
+    this.apiService.updateTarget(this.id, formData);
+    this.targets$ = this.apiService.targets;
+    this.router.navigateByUrl('/view/targets');
   }
 
   addKeyContactClick(): void {

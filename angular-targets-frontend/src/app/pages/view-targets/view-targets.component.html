@@ -8,8 +8,11 @@
     heading="{{ target.targetName }}"
   >
     <ul class="list-group">
-      <button class="class btn btn-primary" (click)="goToEdit(target._id)">
+      <button class="class btn btn-primary" (click)="goToEdit(target.id)">
         Edit Target
+      </button>
+      <button class="class btn btn-danger" (click)="delete(target.id)">
+        Delete Target
       </button>
       <li class="list-group-item">Status: {{ target.status }}</li>
       <li class="list-group-item">Annual Growth Rate: {{ target.agr }}</li>
