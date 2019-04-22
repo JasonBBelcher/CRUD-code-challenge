@@ -3,10 +3,11 @@
 A company is looking to achieve inorganic growth through acquisitions. They have asked us to develop an online tool to track and analyze potential target companies.
 ### Challenge:
 Develop a prototype that will allow the client to perform the following activities:
-- View a list of targets
-- Edit an existing target
-- Create a new target
+- View a list of targets DONE
+- Edit an existing target DONE
+- Create a new target DONE
 - Delete a target
+Visualization of AGR data across all created targets
 ### Assumptions:
 - Use a modern JavaScript framework (e.g., React, Angular)
 - Data does not need to be persisted (use mock data) 
