@@ -7,7 +7,7 @@ Develop a prototype that will allow the client to perform the following activiti
 - Edit an existing target DONE
 - Create a new target DONE
 - Delete a target
-Visualization of AGR data across all created targets
+- Visualization of AGR data across all created targets
 ### Assumptions:
 - Use a modern JavaScript framework (e.g., React, Angular)
 - Data does not need to be persisted (use mock data) 
