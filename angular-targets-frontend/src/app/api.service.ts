@@ -5,7 +5,7 @@ import {
   HttpHeaders,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, of, BehaviorSubject, pipe } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -38,12 +38,22 @@ export class ApiService {
     });
   }
 
-  getTarget(id): Observable<any> {
-    return this.http.get(`${this.prefix}/targets/${id}`);
+  getTarget(id: any): Observable<any> {
+    return this.http
+      .get(`${this.prefix}/targets/${id}`)
+      .pipe(catchError(err => err));
   }
 
-  updateTarget(id, body): Observable<any> {
-    return this.http.patch(`${this.prefix}/targets/${id}`, body);
+  updateTarget(id: any, body: any): void {
+    this.http.patch(`${this.prefix}/targets/${id}`, body).subscribe(data => {
+      this.dataStore.targets.forEach((target, index) => {
+        if (target.id === data.id) {
+          this.dataStore.targets[index] = data;
+        }
+      });
+
+      this._targets.next(Object.assign({}, this.dataStore).targets);
+    });
   }
 
   getKeyContacts(): void {
@@ -54,9 +64,21 @@ export class ApiService {
     });
   }
 
-  createTarget(body): Observable<any> {
-    return this.http
-      .post(`${this.prefix}/targets`, body)
-      .pipe(catchError(err => err));
+  createTarget(body: any): void {
+    this.http.post(`${this.prefix}/targets`, body).subscribe(data => {
+      this.dataStore.targets.push(data);
+      this._targets.next(Object.assign({}, this.dataStore).keyContacts);
+    });
+  }
+
+  deleteTarget(id: any) {
+    this.http.delete(`${this.prefix}/targets/${id}`).subscribe(data => {
+      this.dataStore.targets.forEach((target, index) => {
+        if (target.id === id) {
+          this.dataStore.targets.splice(index, 1);
+        }
+      });
+      this._targets.next(Object.assign({}, this.dataStore).targets);
+    });
   }
 }
