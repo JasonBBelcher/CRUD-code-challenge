@@ -1,0 +1,5 @@
+{
+  "db": {
+    "URI": "mongodb://jason:yodaman9251@ds145786.mlab.com:45786/crud-app-challenge"
+  }
+}
