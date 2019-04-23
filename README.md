@@ -37,12 +37,33 @@ I enjoyed building this code challenge app in Angular 2+ and Node Express. I hop
 - more custom styles and an edit modal instead of a routed page
 - more financial statistics
 - filter searchable contacts and targets
-- redesign the mongooose schema to use refs (foreign keys) instead of        nested subdocuments. Those are hard to get at and reference when you       need to. 
-- re organize the 2 applications to only have one root folder with one       package.json.  You live and learn.  
+- redesign the mongooose schema to use refs (foreign keys) instead of        
+  nested subdocuments. Those are hard to get at and reference when you      
+  need to. 
+- re organize the 2 applications to only have one root folder with one      
+  package.json.  You live and learn. 
+- testing 
+- error handling and robust error validation and normalization
+- loading spinners   
+
 
 #### Live APP link for your convenience
 
 
 [ACME Aquisition Tool](https://calm-escarpment-40693.herokuapp.com)
+
+### Install instruction
+
+```
+$ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
+
+ npm i
+ export NODE_ENV=production
+ npm start // production with front end at localhost:8080 accessing
+ // development mode
+export NODE_ENV=development
+ npm run start:dev 
+
+```
 
 

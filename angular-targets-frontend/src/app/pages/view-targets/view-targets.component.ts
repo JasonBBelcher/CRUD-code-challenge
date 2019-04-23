@@ -24,6 +24,8 @@ export class ViewTargetsComponent implements OnInit {
     this.targets$ = this.apiService.targets;
   }
 
+  /* intent is to create a modal to ask the user whether they are sure they would like to delete a target */
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }

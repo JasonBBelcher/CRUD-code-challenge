@@ -20,7 +20,6 @@ export class EditTargetComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    // some test form data to get the POST right.
     this.form = this.fb.group({
       targetName: [''],
       keyContacts: this.fb.array([]),
@@ -32,7 +31,6 @@ export class EditTargetComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      console.log(params);
       this.id = params['id'];
 
       this.apiService.getTarget(this.id).subscribe(target => {
@@ -72,7 +70,7 @@ export class EditTargetComponent implements OnInit {
     });
   }
 
-  // all an empty formgroup so that user can add a contact to the target record
+  // call an empty formgroup so that user can add a contact to the target record
   addKeyContactsFormGroup(): FormGroup {
     return this.fb.group({
       name: [''],

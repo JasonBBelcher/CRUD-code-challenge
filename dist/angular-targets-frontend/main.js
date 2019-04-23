@@ -343,7 +343,6 @@ var ApiService = /** @class */ (function () {
     ApiService.prototype.getTargets = function () {
         var _this = this;
         this.http.get(this.prefix + "/targets").subscribe(function (data) {
-            console.log(data);
             _this.dataStore.targets = data;
             _this._targets.next(Object.assign({}, _this.dataStore).targets);
         });
@@ -369,7 +368,6 @@ var ApiService = /** @class */ (function () {
     ApiService.prototype.getKeyContacts = function () {
         var _this = this;
         this.http.get(this.prefix + "/targets/contacts").subscribe(function (data) {
-            console.log(data);
             _this.dataStore.keyContacts = data;
             _this._keyContacts.next(Object.assign({}, _this.dataStore).keyContacts);
         });
@@ -686,7 +684,6 @@ var CreateTargetComponent = /** @class */ (function () {
     };
     CreateTargetComponent.prototype.addKeyContactClick = function () {
         this.form.get('keyContacts').push(this.addKeyContactsFormGroup());
-        console.log('clicked');
     };
     CreateTargetComponent.prototype.save = function () {
         this.submitted = true;
@@ -778,7 +775,6 @@ var EditTargetComponent = /** @class */ (function () {
         this.fb = fb;
         this.router = router;
         this.route = route;
-        // some test form data to get the POST right.
         this.form = this.fb.group({
             targetName: [''],
             keyContacts: this.fb.array([]),
@@ -790,7 +786,6 @@ var EditTargetComponent = /** @class */ (function () {
     EditTargetComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
-            console.log(params);
             _this.id = params['id'];
             _this.apiService.getTarget(_this.id).subscribe(function (target) {
                 var targetName = target.targetName, companyInformation = target.companyInformation, kpiData = target.kpiData, status = target.status, keyContacts = target.keyContacts;
@@ -816,7 +811,7 @@ var EditTargetComponent = /** @class */ (function () {
             title: [title]
         });
     };
-    // all an empty formgroup so that user can add a contact to the target record
+    // call an empty formgroup so that user can add a contact to the target record
     EditTargetComponent.prototype.addKeyContactsFormGroup = function () {
         return this.fb.group({
             name: [''],
@@ -1111,6 +1106,7 @@ var ViewTargetsComponent = /** @class */ (function () {
         this.apiService.getTargets();
         this.targets$ = this.apiService.targets;
     };
+    /* intent is to create a modal to ask the user whether they are sure they would like to delete a target */
     ViewTargetsComponent.prototype.openModal = function (template) {
         this.modalRef = this.modalService.show(template);
     };

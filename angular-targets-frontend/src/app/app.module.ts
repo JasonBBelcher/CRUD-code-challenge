@@ -10,7 +10,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { FormsModule, ReactiveFormsModule, NgModel } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateTargetComponent } from './pages/create-target/create-target.component';
 import { ViewTargetsComponent } from './pages/view-targets/view-targets.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';

@@ -32,7 +32,6 @@ export class ApiService {
 
   getTargets(): void {
     this.http.get(`${this.prefix}/targets`).subscribe(data => {
-      console.log(data);
       this.dataStore.targets = data;
       this._targets.next(Object.assign({}, this.dataStore).targets);
     });
@@ -60,7 +59,6 @@ export class ApiService {
 
   getKeyContacts(): void {
     this.http.get(`${this.prefix}/targets/contacts`).subscribe(data => {
-      console.log(data);
       this.dataStore.keyContacts = data;
       this._keyContacts.next(Object.assign({}, this.dataStore).keyContacts);
     });

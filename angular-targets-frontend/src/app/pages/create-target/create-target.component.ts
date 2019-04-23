@@ -50,7 +50,6 @@ export class CreateTargetComponent implements OnInit {
     (this.form.get('keyContacts') as FormArray).push(
       this.addKeyContactsFormGroup()
     );
-    console.log('clicked');
   }
 
   save() {
