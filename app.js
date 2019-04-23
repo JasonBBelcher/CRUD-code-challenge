@@ -11,6 +11,9 @@ var app = express();
 
 var distDir = __dirname + '/angular-targets-frontend/dist/';
 app.use(express.static(distDir));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
+});
 app.use(cors());
 
 app.use(bodyParser.json());
