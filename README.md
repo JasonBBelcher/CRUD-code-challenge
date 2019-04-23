@@ -63,6 +63,9 @@ $ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
  // development mode
 export NODE_ENV=development
  npm run start:dev 
+ cd angular-targets-frontend
+ yarn start 
+ // this will load a proxy config file so the angular dev server can find it. 
 
 ```
 
