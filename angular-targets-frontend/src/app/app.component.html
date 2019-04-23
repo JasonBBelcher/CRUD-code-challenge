@@ -1,29 +1,38 @@
-<h1>{{ title }}</h1>
+<div class="container mt-2">
+  <div class="jumbotron">
+    <h1 class="display-4">ACME Acquisition Tool</h1>
+    <p class="lead">
+      Informing your decisions
+    </p>
+  </div>
 
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a
-      class="nav-link active"
-      routerLink="create/target"
-      routerLinkActive="active"
-      >Create Target</a
-    >
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="view/targets" routerLinkActive="active"
-      >View/Edit Targets</a
-    >
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="view/financials" routerLinkActive="active"
-      >View Financials</a
-    >
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="view/contacts" routerLinkActive="active"
-      >View Key Contacts</a
-    >
-  </li>
-</ul>
+  <ul
+    [ngClass]="{
+      'nav nav-pills mb-5': innerWidth < 850,
+      'nav nav-tabs mb-5': innerWidth > 850
+    }"
+  >
+    <li class="nav-item">
+      <a class="nav-link" routerLink="create/target" routerLinkActive="active"
+        >Create Target</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="view/targets" routerLinkActive="active"
+        >View/Edit Targets</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="view/financials" routerLinkActive="active"
+        >Financial Overview</a
+      >
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="view/contacts" routerLinkActive="active"
+        >Key Contacts</a
+      >
+    </li>
+  </ul>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

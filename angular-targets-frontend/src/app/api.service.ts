@@ -45,15 +45,17 @@ export class ApiService {
   }
 
   updateTarget(id: any, body: any): void {
-    this.http.patch(`${this.prefix}/targets/${id}`, body).subscribe(data => {
-      this.dataStore.targets.forEach((target, index) => {
-        if (target.id === data.id) {
-          this.dataStore.targets[index] = data;
-        }
-      });
+    this.http
+      .patch(`${this.prefix}/targets/${id}`, body)
+      .subscribe((data: any) => {
+        this.dataStore.targets.forEach((target, index) => {
+          if (target.id === data.id) {
+            this.dataStore.targets[index] = data;
+          }
+        });
 
-      this._targets.next(Object.assign({}, this.dataStore).targets);
-    });
+        this._targets.next(Object.assign({}, this.dataStore).targets);
+      });
   }
 
   getKeyContacts(): void {

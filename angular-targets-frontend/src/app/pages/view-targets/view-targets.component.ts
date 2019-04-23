@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
@@ -10,12 +11,21 @@ import { Router } from '@angular/router';
 })
 export class ViewTargetsComponent implements OnInit {
   targets$: Observable<any[]>;
+  modalRef: BsModalRef;
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private modalService: BsModalService
+  ) {}
 
   ngOnInit() {
     this.apiService.getTargets();
     this.targets$ = this.apiService.targets;
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   goToEdit(id: any) {

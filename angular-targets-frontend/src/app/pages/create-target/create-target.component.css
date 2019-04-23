@@ -1,0 +1,30 @@
+
+.status {
+  float: right;
+}
+
+.target-create-form {
+  margin: 1%;
+}
+
+form {
+  margin-bottom: 4%;
+}
+
+.fixed-height {
+  height: 200px;
+
+}
+
+.overflo-content {
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 1em;
+  margin-bottom: 1em;
+  overflow: auto;
+  height: 300px;
+}
+
+span {
+  padding-right: 1em;
+}
