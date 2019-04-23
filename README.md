@@ -42,6 +42,7 @@ I enjoyed building this code challenge app in Angular 2+ and Node Express. I hop
 
 #### Live APP link for your convenience
 
-[ACME Aquisition Tool]: https://calm-escarpment-40693.herokuapp.com
+
+[ACME Aquisition Tool](https://calm-escarpment-40693.herokuapp.com)
 
 
