@@ -8,6 +8,9 @@ const cors = require('cors');
 var targets = require('./routes/targets');
 
 var app = express();
+
+var distDir = __dirname + '/angular-targets-frontend/dist/';
+app.use(express.static(distDir));
 app.use(cors());
 
 app.use(bodyParser.json());
