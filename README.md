@@ -6,8 +6,10 @@ Develop a prototype that will allow the client to perform the following activiti
 - View a list of targets DONE
 - Edit an existing target DONE
 - Create a new target DONE
-- Delete a target
-- Visualization of AGR data across all created targets
+- Delete a target DONE
+- Visualization of AGR data across all created targets DONE
+- Deployed to Heroku DONE
+- Styled with Bootstrap DONE
 ### Assumptions:
 - Use a modern JavaScript framework (e.g., React, Angular)
 - Data does not need to be persisted (use mock data) 
@@ -22,3 +24,24 @@ Develop a prototype that will allow the client to perform the following activiti
   - *persisted in mongoose as Array of Objects*
 - FinancialPerformance
   - calculated as mongoose virtual property into a final percentage value of *AGR (annual growth rate)*
+
+## Note to Insiten
+
+Thank you for the opportunity to interview with your great company and at the very least to keep building my portfolio of experience. 
+I enjoyed building this code challenge app in Angular 2+ and Node Express. I hope you like it too :) 
+
+ The Angular app has full data persistance using mongodb and is deployed to heroku as a MEAN full stack application.  
+
+### Things I would do or change if I had more time 
+- Build in authentication on the back and front end
+- more custom styles and an edit modal instead of a routed page
+- more financial statistics
+- filter searchable contacts and targets
+- redesign the mongooose schema to use refs (foreign keys) instead of        nested subdocuments. Those are hard to get at and reference when you       need to. 
+- re organize the 2 applications to only have one root folder with one       package.json.  You live and learn.  
+
+#### Live APP link for your convenience
+
+[ACME Aquisition Tool]: https://calm-escarpment-40693.herokuapp.com
+
+
