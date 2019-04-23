@@ -9,10 +9,11 @@ var targets = require('./routes/targets');
 
 var app = express();
 
-var distDir = __dirname + '/angular-targets-frontend/dist/';
+var distDir =
+  __dirname + '/angular-targets-frontend/dist/angular-targets-frontend';
 app.use(express.static(distDir));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(distDir));
 });
 app.use(cors());
 
