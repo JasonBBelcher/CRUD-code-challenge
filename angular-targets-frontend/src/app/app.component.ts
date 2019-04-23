@@ -8,9 +8,10 @@ import { Component, OnInit, OnChanges, HostListener } from '@angular/core';
 export class AppComponent implements OnInit {
   innerWidth: number;
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    console.log(event);
+  ngOnInit() {
+    this.onResize();
+  }
+  onResize() {
     this.innerWidth = window.innerWidth;
   }
-  ngOnInit() {}
 }

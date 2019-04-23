@@ -1,99 +1,130 @@
-<form name="form" [formGroup]="form" novalidate>
-  <div class="form-group">
-    <label for="targetName">Company Name</label>
-    <input
-      type="text"
-      class="form-control"
-      name="targetName"
-      formControlName="targetName"
-      required
-    />
-  </div>
-  <div>
-    <div class="form-group">
-      <div>
-        <button class="btn btn-primary" (click)="addKeyContactClick()">
-          Add Contact
-        </button>
-      </div>
-    </div>
-    <div
-      formArrayName="keyContacts"
-      *ngFor="let keyContact of form.get('keyContacts').controls; let i = index"
-    >
-      <h4>Key Contact {{ i + 1 }}</h4>
-      <div class="form-group" [formGroupName]="i">
-        <label for="name">Key Contact Name</label>
+<form
+  name="form"
+  class="container"
+  [formGroup]="form"
+  (ngSubmit)="save()"
+  novalidate
+>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="targetName">Company Name</label>
         <input
           type="text"
           class="form-control"
-          name="name"
-          formControlName="name"
-          required
-        />
-        <label for="phone">Phone Number</label>
-        <input
-          type="text"
-          class="form-control"
-          name="phone"
-          formControlName="phone"
-          required
-        />
-        <label for="title">Position or Title</label>
-        <input
-          type="text"
-          class="form-control"
-          name="title"
-          formControlName="title"
+          name="targetName"
+          formControlName="targetName"
           required
         />
       </div>
+
+      <div class="form-group" formGroupName="kpiData">
+        <label for="startYearValue">Starting Revenue</label>
+        <input
+          type="number"
+          class="form-control"
+          name="startYearValue"
+          formControlName="startYearValue"
+          required
+        />
+        <label for="endYearValue">End of Year Revenue</label>
+        <input
+          type="number"
+          class="form-control"
+          name="endYearValue"
+          formControlName="endYearValue"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="companyInformation">Company Notes & Info</label>
+        <textarea
+          class="form-control"
+          name="companyInformation"
+          formControlName="companyInformation"
+          required
+        ></textarea>
+      </div>
+      <button
+        [disabled]="form.invalid"
+        class="btn btn-primary btn-lg btn-block target-create-form"
+        (ngSubmit)="save()"
+      >
+        Save
+      </button>
+      <button
+        class="btn btn-secondary btn-lg btn-block target-create-form"
+        (click)="openModal(templateQuestion)"
+      >
+        Reset Form
+      </button>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group ">
+        <label for="status"
+          ><strong> <span>Status: </span> </strong>
+        </label>
+        <select required name="status" formControlName="status">
+          <option value="RESEARCHING">Researching </option>
+          <option value="PENDING-APPROVAL">Pending approval</option>
+          <option value="APPROVED">Approved</option>
+          <option value="DECLINED">Declined</option>
+        </select>
+      </div>
+
+      <div class="fixed-height">
+        <div class="overflo-content">
+          <div
+            formArrayName="keyContacts"
+            *ngFor="
+              let keyContact of form.get('keyContacts').controls;
+              let i = index
+            "
+          >
+            <h4>Key Contact {{ i + 1 }}</h4>
+            <div class="form-group" [formGroupName]="i">
+              <label for="name">Key Contact Name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="name"
+                formControlName="name"
+                required
+              />
+              <label for="phone">Phone Number</label>
+              <input
+                type="text"
+                class="form-control"
+                name="phone"
+                formControlName="phone"
+                required
+              />
+              <label for="title">Position or Title</label>
+              <input
+                type="text"
+                class="form-control"
+                name="title"
+                formControlName="title"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            class="btn btn-secondary"
+            (click)="addKeyContactClick(); $event.preventDefault()"
+          >
+            Add Contact
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="form-group" formGroupName="kpiData">
-    <label for="startYearValue">Starting Revenue</label>
-    <input
-      type="number"
-      class="form-control"
-      name="startYearValue"
-      formControlName="startYearValue"
-      required
-    />
-    <label for="endYearValue">End of Year Revenue</label>
-    <input
-      type="number"
-      class="form-control"
-      name="endYearValue"
-      formControlName="endYearValue"
-      required
-    />
-  </div>
-
-  <div class="form-group">
-    <label for="status">Status</label>
-    <select required name="status" formControlName="status">
-      <option value="RESEARCHING">Researching </option>
-      <option value="PENDING-APPROVAL">Pending approval</option>
-      <option value="APPROVED">Approved</option>
-      <option value="DECLINED">Declined</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="companyInformation">Company Notes & Info</label>
-    <textarea
-      class="form-control"
-      name="companyInformation"
-      formControlName="companyInformation"
-      required
-    ></textarea>
-  </div>
-  <button class="btn btn-default" (click)="openModal(template)">Save</button>
-  <button class="btn btn-danger" (click)="resetForm()">Reset Form</button>
 </form>
 
-<ng-template #template>
+<ng-template #templateQuestion>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
     <button
@@ -105,11 +136,13 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-    Save {{ form.value.targetName }} ?
+  <div class="modal-body text-center">
+    <p>
+      Are you sure you want to reset this form?
+    </p>
 
-    <div>
-      <button class="btn btn-primary" (click)="save()">Confirm Save</button>
-    </div>
+    <button class="btn btn-warning btn-lg btn-block" (click)="resetForm()">
+      Reset
+    </button>
   </div>
 </ng-template>

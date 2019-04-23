@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+@import "../node_modules/bootswatch/dist/litera/bootstrap.min.css";
+
+a {
+  color: #457FAB
+}
+
+h1 {
+  color: #0EAAD0;
+}
+
+
+
+@media only screen and (max-device-width: 480px) {
+  h1 {
+    font-size: 2em !important;
+  }
+  .lead {
+    font-size: 1em !important;
+  }
+}
+
