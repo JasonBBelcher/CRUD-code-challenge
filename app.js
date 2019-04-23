@@ -9,8 +9,7 @@ var targets = require('./routes/targets');
 
 var app = express();
 
-var distDir =
-  __dirname + '/angular-targets-frontend/dist/angular-targets-frontend';
+var distDir = __dirname + '/dist/angular-targets-frontend';
 app.use(express.static(distDir));
 app.get('*', (req, res) => {
   res.sendFile(path.join(distDir));
