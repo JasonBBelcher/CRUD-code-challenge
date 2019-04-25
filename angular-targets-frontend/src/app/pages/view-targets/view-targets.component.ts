@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ViewTargetsComponent implements OnInit {
   targets$: Observable<any[]>;
   modalRef: BsModalRef;
+  page: any;
 
   constructor(
     private apiService: ApiService,

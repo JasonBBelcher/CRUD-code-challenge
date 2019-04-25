@@ -8,12 +8,12 @@ import { ViewContactsComponent } from './pages/view-contacts/view-contacts.compo
 import { EditTargetComponent } from './pages/edit-target/edit-target.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'view/targets', pathMatch: 'full' },
   { path: 'create/target', component: CreateTargetComponent },
   { path: 'edit/target/:id', component: EditTargetComponent },
   { path: 'view/targets', component: ViewTargetsComponent },
   { path: 'view/contacts', component: ViewContactsComponent },
   { path: 'view/financials', component: ViewFinancialsComponent },
+  { path: '', redirectTo: 'view/targets', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

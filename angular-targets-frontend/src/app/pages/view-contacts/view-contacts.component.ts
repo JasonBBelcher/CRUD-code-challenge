@@ -9,6 +9,7 @@ import { ApiService } from '../../api.service';
 })
 export class ViewContactsComponent implements OnInit {
   keyContacts$: Observable<any[]>;
+  page: any;
 
   constructor(private apiService: ApiService) {}
 
