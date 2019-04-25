@@ -78,7 +78,7 @@
           <div
             formArrayName="keyContacts"
             *ngFor="
-              let keyContact of form.get('keyContacts').controls;
+              let keyContact of form.get('keyContacts')['controls'];
               let i = index
             "
           >

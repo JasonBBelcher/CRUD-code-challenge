@@ -63,7 +63,6 @@ export class CreateTargetComponent implements OnInit {
     this.apiService.createTarget(formData);
     this.targets$ = this.apiService.targets;
     this.resetForm();
-    this.modalRef.hide();
   }
 
   resetForm() {
@@ -74,6 +73,7 @@ export class CreateTargetComponent implements OnInit {
       kpiData: this.fb.group({ startYearValue: [''], endYearValue: [''] }),
       status: ['RESEARCHING']
     });
+
     this.modalRef.hide();
   }
 

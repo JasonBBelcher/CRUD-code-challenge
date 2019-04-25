@@ -10,14 +10,6 @@ var targets = require('./routes/targets');
 
 var app = express();
 
-if (app.get('env') === 'production') {
-  var distDir = __dirname + '/dist/angular-targets-frontend';
-  app.use(express.static(distDir));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(distDir));
-  });
-}
-
 app.use(cors());
 
 app.use(bodyParser.json());
@@ -26,12 +18,19 @@ app.use(cookieParser());
 
 app.use('/api/v1/targets', targets);
 
-app.use(function(req, res, next) {
-  let err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+if (app.get('env') === 'production') {
+  var distDir = __dirname + '/dist/angular-targets-frontend/';
+  app.use(express.static(distDir));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distDir));
+  });
+}
 
-app.use(errorHandler);
+// took out last error handling middle ware to make sure refreshing works in angular app
+app.use(function(req, res, next) {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(distDir));
+  });
+});
 
 module.exports = app;
