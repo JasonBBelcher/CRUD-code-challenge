@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Observable } from 'rxjs';
 import { ApiService } from '../../api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -11,14 +12,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EditTargetComponent implements OnInit {
   targets$: Observable<any[]>;
+  @Input() targetId: any;
+
   form: FormGroup;
-  id: any;
-  sub: Subscription;
+
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: BsModalService
   ) {
     this.form = this.fb.group({
       targetName: [''],
@@ -30,34 +33,30 @@ export class EditTargetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      this.id = params['id'];
-
-      this.apiService.getTarget(this.id).subscribe(target => {
-        const {
-          targetName,
-          companyInformation,
-          kpiData,
-          status,
-          keyContacts
-        } = target;
-        this.form.patchValue({
-          targetName,
-          keyContacts,
-          companyInformation,
-          kpiData,
-          status
-        });
-        // loop over single target records keyContacts and create a formgroup object for each one.
-        target.keyContacts.forEach(contact => {
-          (this.form.get('keyContacts') as FormArray).push(
-            this.createContactsFormGroup(
-              contact.name,
-              contact.phone,
-              contact.title
-            )
-          );
-        });
+    this.apiService.getTarget(this.targetId).subscribe(target => {
+      const {
+        targetName,
+        companyInformation,
+        kpiData,
+        status,
+        keyContacts
+      } = target;
+      this.form.patchValue({
+        targetName,
+        keyContacts,
+        companyInformation,
+        kpiData,
+        status
+      });
+      // loop over single target records keyContacts and create a formgroup object for each one.
+      target.keyContacts.forEach(contact => {
+        (this.form.get('keyContacts') as FormArray).push(
+          this.createContactsFormGroup(
+            contact.name,
+            contact.phone,
+            contact.title
+          )
+        );
       });
     });
   }
@@ -79,17 +78,26 @@ export class EditTargetComponent implements OnInit {
     });
   }
 
-  save() {
-    const formData = this.form.value;
-    this.apiService.updateTarget(this.id, formData);
-    this.targets$ = this.apiService.targets;
-    this.router.navigateByUrl('/view/targets');
+  deleteKeyContactClick(): void {
+    if ((this.form.get('keyContacts') as FormArray).length > 1) {
+      (this.form.get('keyContacts') as FormArray).removeAt(
+        (this.form.get('keyContacts') as FormArray).length - 1
+      );
+    }
   }
 
   addKeyContactClick(): void {
     (this.form.get('keyContacts') as FormArray).push(
       this.addKeyContactsFormGroup()
     );
+  }
+
+  save() {
+    const formData = this.form.value;
+    this.apiService.updateTarget(this.targetId, formData);
+    this.targets$ = this.apiService.targets;
+    this.modalService.hide(1);
+    this.router.navigateByUrl('/view/targets');
   }
 
   resetForm() {

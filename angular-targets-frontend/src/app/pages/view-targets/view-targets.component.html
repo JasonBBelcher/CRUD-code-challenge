@@ -8,7 +8,10 @@
     heading="{{ target.targetName }}"
   >
     <ul class="list-group">
-      <button class="class btn btn-primary" (click)="goToEdit(target.id)">
+      <button
+        class="class btn btn-primary"
+        (click)="getId(target.id, editForm)"
+      >
         Edit Target
       </button>
       <button
@@ -32,7 +35,7 @@
 
 <ng-template #templateQuestion>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+    <h4 class="modal-title pull-left">Delete Target</h4>
     <button
       type="button"
       class="close pull-right"
@@ -50,5 +53,22 @@
     <button class="btn btn-warning btn-lg btn-block" (click)="delete()">
       Delete
     </button>
+  </div>
+</ng-template>
+
+<ng-template #editForm>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit Target</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <app-edit-target [targetId]="id"></app-edit-target>
   </div>
 </ng-template>
