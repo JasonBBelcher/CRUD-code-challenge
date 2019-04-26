@@ -2,6 +2,11 @@
 
 
 @import "../node_modules/bootswatch/dist/litera/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css?family=Jura');
+
+* {
+  font-family: 'Jura', sans-serif !important;
+}
 
 a {
   color: #457FAB
