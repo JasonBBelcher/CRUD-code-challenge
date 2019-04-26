@@ -4,7 +4,7 @@
 }
 
 .target-create-form {
-  margin: 1%;
+  margin: 2% 0 1%;
 }
 
 form {
@@ -27,4 +27,8 @@ form {
 
 span {
   padding-right: 1em;
+}
+
+textarea {
+  margin-bottom: 32px;
 }

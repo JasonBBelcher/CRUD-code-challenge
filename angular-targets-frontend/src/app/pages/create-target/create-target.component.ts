@@ -52,6 +52,14 @@ export class CreateTargetComponent implements OnInit {
     );
   }
 
+  deleteKeyContactClick(): void {
+    if ((this.form.get('keyContacts') as FormArray).length > 1) {
+      (this.form.get('keyContacts') as FormArray).removeAt(
+        (this.form.get('keyContacts') as FormArray).length - 1
+      );
+    }
+  }
+
   save() {
     this.submitted = true;
     const formData = this.form.value;
@@ -73,8 +81,9 @@ export class CreateTargetComponent implements OnInit {
       kpiData: this.fb.group({ startYearValue: [''], endYearValue: [''] }),
       status: ['RESEARCHING']
     });
-
-    this.modalRef.hide();
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
   }
 
   openModal(template: TemplateRef<any>) {
