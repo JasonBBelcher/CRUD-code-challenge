@@ -1,9 +1,9 @@
 <accordion>
   <accordion-group
     *ngFor="
-      let target of (targets$
+      let target of targets$
         | async
-        | paginate: { itemsPerPage: 2, currentPage: page })
+        | paginate: { itemsPerPage: 2, currentPage: page }
     "
     heading="{{ target.targetName }}"
   >
@@ -11,7 +11,10 @@
       <button class="class btn btn-primary" (click)="goToEdit(target.id)">
         Edit Target
       </button>
-      <button class="class btn btn-danger" (click)="getId(target.id)">
+      <button
+        class="class btn btn-danger"
+        (click)="getId(target.id, templateQuestion)"
+      >
         Delete Target
       </button>
       <li class="list-group-item">Status: {{ target.status }}</li>

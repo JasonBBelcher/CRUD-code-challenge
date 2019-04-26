@@ -38,9 +38,14 @@ export class ViewTargetsComponent implements OnInit {
 
   delete() {
     this.apiService.deleteTarget(this.id);
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
   }
 
-  getId(id: any) {
+  getId(id: any, modelTemplate) {
+    console.log(id);
     this.id = id;
+    this.openModal(modelTemplate);
   }
 }
