@@ -10,6 +10,7 @@ Develop a prototype that will allow the client to perform the following activiti
 - Visualization of AGR data across all created targets DONE
 - Deployed to Heroku DONE
 - Styled with Bootstrap DONE
+- Basic validation DONE 
 ### Assumptions:
 - Use a modern JavaScript framework (e.g., React, Angular)
 - Data does not need to be persisted (use mock data) 
