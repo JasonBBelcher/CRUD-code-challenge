@@ -16,6 +16,16 @@
           formControlName="targetName"
           required
         />
+
+        <div
+          class="error-msg"
+          *ngIf="
+            form.get('targetName').hasError('required') &&
+            !form.get('targetName').pristine
+          "
+        >
+          <p class="mt-2">company name is a required field.</p>
+        </div>
       </div>
 
       <div class="form-group" formGroupName="kpiData">
@@ -27,6 +37,16 @@
           formControlName="startYearValue"
           required
         />
+        <div
+          class="error-msg"
+          *ngIf="
+            form.get('kpiData.startYearValue').hasError('required') &&
+            !form.get('kpiData.startYearValue').pristine
+          "
+        >
+          <p class="mt-2">Please provide beginning of year earnings</p>
+        </div>
+
         <label for="endYearValue">End of Year Revenue</label>
         <input
           type="number"
@@ -35,6 +55,15 @@
           formControlName="endYearValue"
           required
         />
+        <div
+          class="error-msg"
+          *ngIf="
+            form.get('kpiData.endYearValue').hasError('required') &&
+            !form.get('kpiData.endYearValue').pristine
+          "
+        >
+          <p class="mt-2">Please provide an end of year earnings</p>
+        </div>
       </div>
       <div class="form-group">
         <label for="companyInformation">Company Notes & Info</label>
@@ -44,6 +73,15 @@
           formControlName="companyInformation"
           required
         ></textarea>
+        <div
+          class="error-msg"
+          *ngIf="
+            form.get('companyInformation').hasError('required') &&
+            !form.get('companyInformation').pristine
+          "
+        >
+          <p class="mt-2">Please provide a description for the company</p>
+        </div>
       </div>
       <button
         [disabled]="form.invalid"
@@ -75,6 +113,9 @@
 
       <div class="fixed-height">
         <div class="overflo-content">
+          <div class="error-msg" *ngIf="form.get('keyContacts').invalid">
+            <p class="mt-2">at least one key contact is required</p>
+          </div>
           <div
             formArrayName="keyContacts"
             *ngFor="
@@ -94,7 +135,7 @@
               />
               <label for="phone">Phone Number</label>
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 name="phone"
                 formControlName="phone"
@@ -113,10 +154,17 @@
         </div>
         <div>
           <button
-            class="btn btn-secondary"
+            class="btn btn-secondary btn-block btn-lg"
             (click)="addKeyContactClick(); $event.preventDefault()"
+            [disabled]="form.invalid"
           >
             Add Contact
+          </button>
+          <button
+            class="btn btn-secondary btn-block btn-lg target-create-form"
+            (click)="deleteKeyContactClick(); $event.preventDefault()"
+          >
+            Delete Contact
           </button>
         </div>
       </div>

@@ -19,6 +19,14 @@ ul {
 }
 
 
+@media only screen and (max-device-width: 480px) {
+  .container {
+    border: none;
+    border-radius: 10px;
+    padding: 1em;
+  }
+
+}
 
 
 
