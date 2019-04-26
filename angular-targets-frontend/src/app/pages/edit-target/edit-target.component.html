@@ -15,6 +15,9 @@
         <button class="btn btn-primary" (click)="addKeyContactClick()">
           Add Contact
         </button>
+        <button class="btn btn-warning" (click)="deleteKeyContactClick()">
+          Delete Contact
+        </button>
       </div>
     </div>
   </div>
@@ -92,6 +95,10 @@
       required
     ></textarea>
   </div>
-  <button class="btn btn-default" (click)="save()">Save</button>
-  <button class="btn btn-danger" (click)="resetForm()">Reset Form</button>
+  <button class="btn btn-primary btn-block btn-lg" (click)="save()">
+    Save
+  </button>
+  <button class="btn btn-danger btn-block btn-lg" (click)="resetForm()">
+    Reset Form
+  </button>
 </form>

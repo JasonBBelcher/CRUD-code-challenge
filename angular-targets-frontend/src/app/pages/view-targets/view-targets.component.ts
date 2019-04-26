@@ -44,7 +44,6 @@ export class ViewTargetsComponent implements OnInit {
   }
 
   getId(id: any, modelTemplate) {
-    console.log(id);
     this.id = id;
     this.openModal(modelTemplate);
   }
