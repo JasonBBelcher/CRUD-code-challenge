@@ -11,7 +11,7 @@
       <button class="class btn btn-primary" (click)="goToEdit(target.id)">
         Edit Target
       </button>
-      <button class="class btn btn-danger" (click)="delete(target.id)">
+      <button class="class btn btn-danger" (click)="getId(target.id)">
         Delete Target
       </button>
       <li class="list-group-item">Status: {{ target.status }}</li>
@@ -26,3 +26,26 @@
 <div class="mt-5  d-flex justify-content-center">
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
 </div>
+
+<ng-template #templateQuestion>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <p>
+      Are you sure you want to delete this target?
+    </p>
+
+    <button class="btn btn-warning btn-lg btn-block" (click)="delete()">
+      Delete
+    </button>
+  </div>
+</ng-template>

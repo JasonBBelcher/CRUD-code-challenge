@@ -13,6 +13,7 @@ export class ViewTargetsComponent implements OnInit {
   targets$: Observable<any[]>;
   modalRef: BsModalRef;
   page: any;
+  id: any;
 
   constructor(
     private apiService: ApiService,
@@ -35,7 +36,11 @@ export class ViewTargetsComponent implements OnInit {
     this.router.navigate(['/edit/target', id]);
   }
 
-  delete(id: any) {
-    this.apiService.deleteTarget(id);
+  delete() {
+    this.apiService.deleteTarget(this.id);
+  }
+
+  getId(id: any) {
+    this.id = id;
   }
 }
