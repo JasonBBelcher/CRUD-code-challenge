@@ -57,18 +57,29 @@ I enjoyed building this code challenge app in Angular 2+ and Node Express. I hop
 ### Install instruction
 
 ```
+ // Development environment
 
 $ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
 
- npm i
- export NODE_ENV=production
- npm start // production with front end at localhost:8080 accessing
- // development mode
-export NODE_ENV=development
- npm run start:dev 
+
+ cd insiten-code-challenge
+
+ npm i 
+
+ export NODE_ENV=development
+
+ npm run start:dev
+
+ //  create new terminal process 
+
  cd angular-targets-frontend
+
+ yarn install
+
  yarn start 
- // this will load a proxy config file so the angular dev server can find it. 
+
+// this will start angular using a proxy config file which will proxy 
+// api requests to the backend at localhost:8080 instead of localhost:4200
 
 ```
 
