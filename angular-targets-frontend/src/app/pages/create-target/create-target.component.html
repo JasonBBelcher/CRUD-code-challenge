@@ -194,3 +194,66 @@
     </button>
   </div>
 </ng-template>
+
+<ng-template #saveConfirmed>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Save Confirmation</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="saveModalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center" *ngIf="currentResponse">
+    <div>
+      <h3>Target Successfully Saved!</h3>
+      <ul>
+        <li>
+          <p>Company Name: {{ currentResponse.targetName }}</p>
+        </li>
+        <li>
+          <p>Company Info: {{ currentResponse.companyInformation }}</p>
+        </li>
+        <li>
+          <p>Company AGR: {{ currentResponse.agr }}</p>
+        </li>
+      </ul>
+      <hr />
+      <h4>Key Contacts</h4>
+      <ul *ngFor="let keyContact of currentResponse.keyContacts">
+        <li>
+          <p>{{ keyContact.name }}</p>
+        </li>
+        <li>
+          <p>{{ keyContact.phone }}</p>
+        </li>
+        <li>
+          <p>{{ keyContact.title }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #errorMessage>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Error Message</h4>
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="errorModalRef.hide()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center" *ngIf="errorResponse">
+    <div>
+      <h4>Status Code: {{ errorResponse.status }}</h4>
+      <p>{{ errorResponse.statusText }}</p>
+    </div>
+  </div>
+</ng-template>

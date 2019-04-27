@@ -15,6 +15,9 @@ form {
   height: 200px;
 
 }
+li {
+  list-style-type: none;
+}
 
 .overflo-content {
   border-radius: 10px;
