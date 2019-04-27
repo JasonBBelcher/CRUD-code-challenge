@@ -11,6 +11,7 @@ Develop a prototype that will allow the client to perform the following activiti
 - Deployed to Heroku DONE
 - Styled with Bootstrap DONE
 - Basic validation DONE 
+- Edit mode as a modal popup DONE
 ### Assumptions:
 - Use a modern JavaScript framework (e.g., React, Angular)
 - Data does not need to be persisted (use mock data) 
@@ -56,6 +57,7 @@ I enjoyed building this code challenge app in Angular 2+ and Node Express. I hop
 ### Install instruction
 
 ```
+
 $ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
 
  npm i
