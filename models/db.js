@@ -12,7 +12,7 @@ if (app.get('env') === 'production') {
 }
 
 if (app.get('env') === 'development') {
-  uristring = 'mongodb://localhost:27017/targetsdb';
+  uristring = config.get('db.URI');
 }
 
 mongoose
