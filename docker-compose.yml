@@ -3,11 +3,11 @@ services:
   api:
     container_name: api
     restart: always
-    build: ./
+    build: ./api
     ports:
       - '3001:3001'
     volumes:
-      - .:/app
+      - ./api:/app
     links:
       - mongo
   mongo:
@@ -22,6 +22,6 @@ services:
     ports:
       - '4200:4200'
     volumes:
-      - ./angular:/app/angular
+      - ./angular:/angular
     links:
       - api
