@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   api:
     container_name: api
@@ -6,8 +6,6 @@ services:
     build: ./api
     ports:
       - '3001:3001'
-    volumes:
-      - ./api:/app
     links:
       - mongo
   mongo:
@@ -21,7 +19,5 @@ services:
     build: './angular'
     ports:
       - '4200:4200'
-    volumes:
-      - ./angular:/angular
     links:
       - api

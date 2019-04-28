@@ -13,7 +13,7 @@ Develop a prototype that will allow the client to perform the following activiti
 - Styled with Bootstrap DONE
 - Basic validation DONE 
 - Edit mode as a modal popup DONE
-- Dockerize the project for speedy development onboarding
+- Dockerize the project for speedy development onboarding DONE
 ### Assumptions:
 - Use a modern JavaScript framework (e.g., React, Angular)
 - Data does not need to be persisted (use mock data) 
@@ -30,8 +30,6 @@ Develop a prototype that will allow the client to perform the following activiti
   - calculated as mongoose virtual property into a final percentage value of *AGR (annual growth rate)*
 
 
-
-
 #### Live APP link for your convenience
 
 
@@ -39,19 +37,48 @@ Develop a prototype that will allow the client to perform the following activiti
 
 ### Install instruction
 
-Docker is required in order to run this project in development mode
+[Docker](https://www.docker.com/products/docker-desktop) is required in order to run this project.
+
+ #### DOCKER QUICK INSTALLATION
 
 ```
- // Development environment
-
 $ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
 
 $ cd insiten-code-challenge
 
-$ docker-compose up
+$ ./start-docker-compose.sh
 
+
+```
+#### DEVELOPMENT INSTALLATION
+this will start everything up locally with the exception of mongo. 
+
+```
+$ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
+
+$ cd insiten-code-challenge
+
+$ ./start.sh
+
+```
+
+#### Manual starting and stopping of project
 
 
 ```
 
+yourcomputer:insiten-code-challenge$ cd api
+yourcomputer:api$ export NODE_ENV=developmentlive; 
+yourcomputer:api$ npm run start:dev 
+```
 
+if mongo refuses to connect I usually ` docker stop mongo ` then `docker start mongo` before trying to restart api server.
+
+```
+// new iterm
+yourcomputer:api$ cd angular 
+yourcomputer:angular$ npm run start
+// browser should automatically open 
+// begin working  
+
+```

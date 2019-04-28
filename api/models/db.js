@@ -15,6 +15,10 @@ if (app.get('env') === 'development') {
   uristring = config.get('db.URI');
 }
 
+if (app.get('env') === 'developmentlive') {
+  uristring = config.get('db.URI');
+}
+
 mongoose
   .connect(uristring)
   .then(() => {
