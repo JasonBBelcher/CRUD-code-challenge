@@ -1,0 +1,27 @@
+version: '2'
+services:
+  api:
+    container_name: api
+    restart: always
+    build: ./
+    ports:
+      - '3001:3001'
+    volumes:
+      - .:/app
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'
+  angular:
+    container_name: angular-client
+    restart: always
+    build: './angular'
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./angular:/app/angular
+    links:
+      - api
