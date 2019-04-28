@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>Insiten Coding Challenge</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="insiten-coding-challenge">Insiten Coding Challenge</h1>
+<h2 id="business-problem">Business Problem:</h2>
+<p>A company is looking to achieve inorganic growth through acquisitions. They have asked us to develop an online tool to track and analyze potential target companies.</p>
+<h3 id="challenge">Challenge:</h3>
+<p>Develop a prototype that will allow the client to perform the following activities:</p>
+<ul>
+<li>View a list of targets DONE</li>
+<li>Edit an existing target DONE</li>
+<li>Create a new target DONE</li>
+<li>Delete a target DONE</li>
+<li>Visualization of AGR data across all created targets DONE</li>
+<li>Deployed to Heroku DONE</li>
+<li>Styled with Bootstrap DONE</li>
+<li>Basic validation DONE</li>
+<li>Edit mode as a modal popup DONE</li>
+<li>Dockerize the project for speedy development onboarding DONE</li>
+</ul>
+<h3 id="assumptions">Assumptions:</h3>
+<ul>
+<li>Use a modern JavaScript framework (e.g., React, Angular)</li>
+<li>Data does not need to be persisted (use mock data)
+<ul>
+<li><em>Targets persisted in mongo with mongoose</em>
+<ul>
+<li><em>I'd rather use real data</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Examples of data to be captured:
+<ul>
+<li>Status (e.g., researching, pending approval, approved, declined)
+<ul>
+<li><em>Enum in mongoose</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CompanyInfo
+<ul>
+<li><em>persisted in mongoose as String</em></li>
+</ul>
+</li>
+<li>KeyContacts
+<ul>
+<li><em>persisted in mongoose as Array of Objects</em></li>
+</ul>
+</li>
+<li>FinancialPerformance
+<ul>
+<li>calculated as mongoose virtual property into a final percentage value of <em>AGR (annual growth rate)</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="live-app-link-for-your-convenience">Live APP link for your convenience</h4>
+<p><a href="https://calm-escarpment-40693.herokuapp.com">ACME Aquisition Tool</a></p>
+<h3 id="install-instruction">Install instruction</h3>
+<p><a href="https://www.docker.com/products/docker-desktop">Docker</a> is required in order to run this project.</p>
+<h4 id="docker-quick-installation">DOCKER QUICK INSTALLATION</h4>
+<pre><code><div>$ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
+
+$ cd insiten-code-challenge
+
+$ ./start-docker-compose.sh
+
+
+</div></code></pre>
+<h4 id="development-installation">DEVELOPMENT INSTALLATION</h4>
+<p>this will start everything up locally with the exception of mongo.</p>
+<pre><code><div>$ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
+
+$ cd insiten-code-challenge
+
+$ ./start.sh
+
+</div></code></pre>
+<h4 id="manual-starting-and-stopping-of-project">Manual starting and stopping of project</h4>
+<pre><code><div>
+yourcomputer:insiten-code-challenge$ cd api
+yourcomputer:api$ export NODE_ENV=developmentlive; 
+yourcomputer:api$ npm run start:dev 
+</div></code></pre>
+<p>if mongo refuses to connect I usually <code>docker stop mongo</code> then <code>docker start mongo</code> before trying to restart api server.</p>
+<pre><code><div>// new iterm
+yourcomputer:api$ cd angular 
+yourcomputer:angular$ npm run start
+// browser should automatically open 
+// begin working  
+
+</div></code></pre>
+
+    </body>
+    </html>
