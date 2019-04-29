@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker-compose --file fullstack-compose.yml start
+docker-compose --file fullstack-compose.yml up

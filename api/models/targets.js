@@ -16,7 +16,7 @@ const targetSchema = new mongoose.Schema(
       required: true
     },
     keyContacts: {
-      type: [{ name: String, phone: Number, title: String }],
+      type: [{ name: String, phone: String, title: String }],
       required: true
     },
     companyInformation: {

@@ -18,6 +18,7 @@ import { ViewFinancialsComponent } from './pages/view-financials/view-financials
 import { ViewContactsComponent } from './pages/view-contacts/view-contacts.component';
 import { ChartsModule } from 'ng2-charts';
 import { EditTargetComponent } from './pages/edit-target/edit-target.component';
+import { PhoneMaskDirective } from './directives/phone-mask.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EditTargetComponent } from './pages/edit-target/edit-target.component';
     PageNotFoundComponent,
     ViewFinancialsComponent,
     ViewContactsComponent,
-    EditTargetComponent
+    EditTargetComponent,
+    PhoneMaskDirective
   ],
   imports: [
     ChartsModule,

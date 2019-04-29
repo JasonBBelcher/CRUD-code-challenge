@@ -1,8 +1,8 @@
-node_modules
-./angular-targets-frontend/node_modules
-./angular-targets-frontend/dist
-./config/production.json
-package-lock.json
+/api/node_modules
+/angular/node_modules
+/angular/dist
+/api/config/production.json
+
 
 # Compiled source #
 ###################
