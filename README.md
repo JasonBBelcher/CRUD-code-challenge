@@ -39,18 +39,20 @@ Develop a prototype that will allow the client to perform the following activiti
 
 [Docker](https://www.docker.com/products/docker-desktop) is required in order to run this project.
 
- #### DOCKER QUICK INSTALLATION
+ #### DOCKER FULLSTACK 
 
 ```
 $ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
 
 $ cd insiten-code-challenge
 
-$ ./start-docker-compose.sh
+$ ./start-fullstack-compose.sh
+
+$ ./stop-fullstack-compose.sh
 
 
 ```
-#### DEVELOPMENT INSTALLATION
+#### DOCKER BACKEND 
 this will start everything up locally with the exception of mongo. 
 
 ```
@@ -58,27 +60,62 @@ $ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
 
 $ cd insiten-code-challenge
 
-$ ./start.sh
+$ ./start-backend-compose.sh
 
+$ ./stop-backend-compose.sh
+```
+#### Useful Docker commands
+
+If something is not working try 
+` $ ./stop-compose-all.sh `
+
+This will stop all containers that you could possibly start for the project
+
+If you would like to clean things up or get space back on your HD then try
+
+Stop all running containers
+```
+docker kill $(docker ps -q)
+```
+Delete all containers
+```
+docker rm $(docker ps -a -q)
+```
+forcefully delete containers 
+```
+docker rm -f $(docker ps -aq)
+```
+```
+Delete all images
+```
+```
+docker rmi $(docker images -q)
+```
+#### LOCAL NPM INSTALLATIONS
+additionally you can clean up more by pruning the system
+```
+$ docker system prune -a -f
 ```
 
-#### Manual starting and stopping of project
+**If you prefer to run without docker-compose you can run these convenience scripts. You still need docker for the mongo image/container**
+
+Installs everything 
+
+```
+$ ./install-fullstack
+```
+
+Installs backend (mongo and express api)
+
+```
+$ ./install-backend
+```
+
+Installs front end (angular)
 
 
 ```
-
-yourcomputer:insiten-code-challenge$ cd api
-yourcomputer:api$ export NODE_ENV=developmentlive; 
-yourcomputer:api$ npm run start:dev 
+$ ./install-angular
 ```
 
-if mongo refuses to connect I usually ` docker stop mongo ` then `docker start mongo` before trying to restart api server.
 
-```
-// new iterm
-yourcomputer:api$ cd angular 
-yourcomputer:angular$ npm run start
-// browser should automatically open 
-// begin working  
-
-```

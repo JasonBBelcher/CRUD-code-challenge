@@ -79,37 +79,58 @@
 <p><a href="https://calm-escarpment-40693.herokuapp.com">ACME Aquisition Tool</a></p>
 <h3 id="install-instruction">Install instruction</h3>
 <p><a href="https://www.docker.com/products/docker-desktop">Docker</a> is required in order to run this project.</p>
-<h4 id="docker-quick-installation">DOCKER QUICK INSTALLATION</h4>
+<h4 id="docker-fullstack">DOCKER FULLSTACK</h4>
 <pre><code><div>$ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
 
 $ cd insiten-code-challenge
 
-$ ./start-docker-compose.sh
+$ ./start-fullstack-compose.sh
+
+$ ./stop-fullstack-compose.sh
 
 
 </div></code></pre>
-<h4 id="development-installation">DEVELOPMENT INSTALLATION</h4>
+<h4 id="docker-backend">DOCKER BACKEND</h4>
 <p>this will start everything up locally with the exception of mongo.</p>
 <pre><code><div>$ git clone git@github.com:JasonBBelcher/insiten-code-challenge.git
 
 $ cd insiten-code-challenge
 
-$ ./start.sh
+$ ./start-backend-compose.sh
 
+$ ./stop-backend-compose.sh
 </div></code></pre>
-<h4 id="manual-starting-and-stopping-of-project">Manual starting and stopping of project</h4>
-<pre><code><div>
-yourcomputer:insiten-code-challenge$ cd api
-yourcomputer:api$ export NODE_ENV=developmentlive; 
-yourcomputer:api$ npm run start:dev 
+<h4 id="useful-docker-commands">Useful Docker commands</h4>
+<p>If something is not working try
+<code>$ ./stop-compose-all.sh</code></p>
+<p>This will stop all containers that you could possibly start for the project</p>
+<p>If you would like to clean things up or get space back on your HD then try</p>
+<p>Stop all running containers</p>
+<pre><code><div>docker kill $(docker ps -q)
 </div></code></pre>
-<p>if mongo refuses to connect I usually <code>docker stop mongo</code> then <code>docker start mongo</code> before trying to restart api server.</p>
-<pre><code><div>// new iterm
-yourcomputer:api$ cd angular 
-yourcomputer:angular$ npm run start
-// browser should automatically open 
-// begin working  
-
+<p>Delete all containers</p>
+<pre><code><div>docker rm $(docker ps -a -q)
+</div></code></pre>
+<p>forcefully delete containers</p>
+<pre><code><div>docker rm -f $(docker ps -aq)
+</div></code></pre>
+<pre><code><div>Delete all images
+</div></code></pre>
+<pre><code><div>docker rmi $(docker images -q)
+</div></code></pre>
+<h4 id="local-npm-installations">LOCAL NPM INSTALLATIONS</h4>
+<p>additionally you can clean up more by pruning the system</p>
+<pre><code><div>$ docker system prune -a -f
+</div></code></pre>
+<p><strong>If you prefer to run without docker-compose you can run these convenience scripts. You still need docker for the mongo image/container</strong></p>
+<p>Installs everything</p>
+<pre><code><div>$ ./install-fullstack
+</div></code></pre>
+<p>Installs backend (mongo and express api)</p>
+<pre><code><div>$ ./install-backend
+</div></code></pre>
+<p>Installs front end (angular)</p>
+<pre><code><div>$ ./install-angular
 </div></code></pre>
 
     </body>
