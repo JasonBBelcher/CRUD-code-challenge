@@ -1,4 +1,4 @@
-# Insiten Coding Challenge
+# Coding Challenge
 
 ## Business Problem:
 A company is looking to achieve inorganic growth through acquisitions. They have asked us to develop an online tool to track and analyze potential target companies.
