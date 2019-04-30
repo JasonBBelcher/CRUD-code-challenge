@@ -6,7 +6,7 @@ services:
     build: ./api
     ports:
       - '3001:3001'
-    links:
+    depends_on:
       - mongo
   mongo:
     container_name: mongo
